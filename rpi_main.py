@@ -2,8 +2,9 @@ from typing import Optional
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from stocks import Stock
+from model import DB
 from rpi import RPi_3BP
+from stocks import Stock
 
 app = FastAPI()
 
