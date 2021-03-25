@@ -1,1 +1,1 @@
-from .led import on, off
+from .led import LED

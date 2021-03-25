@@ -28,23 +28,30 @@ class RPi_3BP(BaseRPi):
         }
 
     @staticmethod
-    def lcd_display(*args, **kwargs):
+    def lcd_display(msg1, msg2, duration=1):
         """ Display information on 16x2 LCD display. """
-        lcd.display(*args, **kwargs)
+        lcd.display(msg1, msg2, duration)
 
     @staticmethod
-    def lcd_display_datetime(*args, **kwargs):
+    def lcd_display_datetime(timezone):
         """ Display datetime on 16x2 LCD display. """
-        lcd.display_datetime(*args, **kwargs)
+        lcd.display_datetime(timezone)
 
     @staticmethod
-    def led_on(*args, **kwargs):
-        led.on(*args, **kwargs)
+    def led_on(channel):
+        """ Turn LED at GPIO channel ON. """
+        led.on(channel)
 
     @staticmethod
-    def led_off(*args, **kwargs):
-        led.off(*args, **kwargs)
+    def led_off(channel):
+        """ Turn LED at GPIO channel OFF. """
+        led.off(channel)
+
+    def setup(self, channel, mode="out"):
+        """ Setup GPIO channel for input or output. """
+        self.gpio_setup(channel, mode)
 
     def cleanup(self):
+        """ Cleanup all GPIO channels. """
         for channel in self.gpio_name_pair.keys():
             self.gpio_cleanup(channel)

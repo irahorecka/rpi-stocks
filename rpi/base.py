@@ -20,17 +20,16 @@ class BaseRPi:
         self.gpio_name_pair = {}
 
     @staticmethod
-    def gpio_setup(*args, **kwargs):
+    def gpio_setup(channel, mode):
         """ Provide class interface for GPIO.setup """
-        mode = kwargs.get("mode")
         if mode == "in":
-            GPIO.setup(*args, GPIO.IN)
+            GPIO.setup(channel, GPIO.IN)
         elif mode == "out":
-            GPIO.setup(*args, GPIO.OUT)
+            GPIO.setup(channel, GPIO.OUT)
         else:
             raise ValueError(f"{mode} is not an acceptable keyword argument.")
 
     @staticmethod
-    def gpio_cleanup(*args, **kwargs):
+    def gpio_cleanup(channel):
         """ Provide class interface for GPIO.cleanup """
-        GPIO.cleanup(*args, **kwargs)
+        GPIO.cleanup(channel)
